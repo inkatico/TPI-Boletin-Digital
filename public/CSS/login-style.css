@@ -1,0 +1,187 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+    font-family: 'Bebas Neue', Arial, sans-serif; /* Cambiado a Bebas Neue */
+    background-color: #F0F0F0;
+    background-image: url("/images/practicas.jpg");
+    color: #333;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px; /* Aumentada la padding */
+    background-color: #d1cece; /* Cambiado el color de fondo */
+    border-bottom: 2px solid #bbb; /* Cambiada la grosor del borde */
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 80px; /* Aumentada el tamaño de la imagen */
+    height: 80px; /* Aumentada el tamaño de la imagen */
+    margin-right: 15px; /* Aumentado el margen a la derecha */
+}
+
+.navegacion {
+    list-style-type: none;
+    display: flex;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+    font-size: 19px;
+}
+nav ul {
+    list-style-type: none;
+    display: flex;
+    gap: 30px; /* Aumentado el espacio entre los elementos del menú */
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    transition: color 1s; /* Agregado efecto de transición */
+}
+
+nav ul li a:hover {
+    color: #6D0E00; /* Cambiado el color al pasar el mouse */
+    transform: scale(1.1);
+    transition: transform 0.3 ease;
+}
+.imagen {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    overflow: hidden;
+    
+}
+.imagen img {
+    width: 100%;
+    height: 100%;
+    border-radius: 0px; /* Aumentado el radio de las esquinas */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Agregado sombra */
+    margin-top: 0px;
+    opacity: 0.4;
+    background-position: 80%;
+}
+.sesion {
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+    background-color: #4a0000; /* Fondo rojo oscuro */
+    padding: 30px;
+    color: white;
+    width: 500px; /* Ancho del formulario */
+    margin: 70px auto; /* Centra el formulario */
+    text-align: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Sombra opcional para darle profundidad */
+    margin-bottom: 124px;
+    border-radius: 5px;
+    margin-top: 150px;
+}
+
+h1 {
+    font-size: 1.4em
+}
+h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    gap: 30px
+}
+input{
+    margin-top: 15px;
+}
+input:focus{
+    outline:none;
+}
+input[type="text"], input[type="password"] {
+    text-align: center;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #333; /* Fondo de los inputs */
+    border: none;
+    color: white;
+    font-size: 1rem;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px 70px;
+    background-color: white; /* Fondo blanco del botón */
+    color: black;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #f0f0f0;
+}
+
+.pie-de-pagina {
+    background-color: #333;
+    color: white;
+    padding: 20px 0;
+    width: 100%;
+}
+
+.contenedor {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.pie-de-pagina p {
+    margin: 0;
+    font-size: 20px;
+}
+
+.sociales-contenedor {
+    text-align: right; /* Alinear todo a la derecha */
+}
+
+.titulo-redes {
+    margin-bottom: 10px;
+    font-size: 30px;
+    font-weight: bold;
+    
+}
+
+.redes-sociales {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.redes-sociales li {
+    margin-left: 15px;
+}
+
+.redes-sociales a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.redes-sociales a:hover {
+    text-decoration: underline;
+}

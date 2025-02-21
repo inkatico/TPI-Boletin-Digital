@@ -1,0 +1,219 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Bebas Neue', Arial, sans-serif;
+    /* Cambiado a Bebas Neue */
+    background-image: url("/images/fonreg.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #333;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    /* Aumentada la padding */
+    background-color: #d1cece;
+    /* Cambiado el color de fondo */
+    border-bottom: 2px solid #bbb;
+    /* Cambiada la grosor del borde */
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 80px;
+    /* Aumentada el tamaño de la imagen */
+    height: 80px;
+    /* Aumentada el tamaño de la imagen */
+    margin-right: 15px;
+    /* Aumentado el margen a la derecha */
+}
+
+.navegacion {
+    list-style-type: none;
+    display: flex;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+    font-size: 19px;
+}
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+    gap: 30px;
+    /* Aumentado el espacio entre los elementos del menú */
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    transition: color 1s;
+    /* Agregado efecto de transición */
+}
+
+nav ul li a:hover {
+    color: #6D0E00;
+    /* Cambiado el color al pasar el mouse */
+    transform: scale(1.1);
+    transition: transform 0.3 ease;
+}
+
+h1 {
+    font-size: 1.4em
+}
+
+.form-container {
+    background-color: #4a5e6b88;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: #3a1b1b;
+    width: 50%;
+    margin-left: 27%;
+    margin-top: 5%;
+    margin-bottom: 9%;
+}
+
+#titulo {
+    font-size: 40px;
+}
+
+#formulario {
+    font-size: 90px;
+}
+
+form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    color: rgb(0, 0, 0);
+
+}
+
+label {
+    text-align: left;
+    font-size: 14px;
+    
+}
+input:focus{
+    outline:none;
+}
+input[type="text"],
+input[type="email"], select {
+    width: 100%;
+    padding: 8px;
+    border: 2px solid #750000;
+    border-radius: 5px;
+    font-size: 14px;
+    background-color:#ffffffc5;
+}
+
+.full-width {
+    grid-column: span 2;
+}
+
+button {
+    grid-column: span 2;
+    background-color: rgb(83, 29, 29);
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #250606;
+}
+
+.imagen {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    overflow: hidden;
+
+}
+
+.imagen img {
+    width: 100%;
+    height: 100%;
+    border-radius: 0px;
+    /* Aumentado el radio de las esquinas */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    /* Agregado sombra */
+    margin-top: 0px;
+    opacity: 0.4;
+    background-position: 80%;
+}
+
+.pie-de-pagina {
+    background-color: #333;
+    color: white;
+    padding: 20px 0;
+    width: 100%;
+}
+
+.contenedor {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.pie-de-pagina p {
+    margin: 0;
+    font-size: 20px;
+}
+
+.sociales-contenedor {
+    text-align: right;
+    /* Alinear todo a la derecha */
+}
+
+.titulo-redes {
+    margin-bottom: 10px;
+    font-size: 30px;
+    font-weight: bold;
+
+}
+
+.redes-sociales {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.redes-sociales li {
+    margin-left: 15px;
+}
+
+.redes-sociales a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.redes-sociales a:hover {
+    text-decoration: underline;
+}

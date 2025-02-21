@@ -1,0 +1,194 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Bebas Neue', Arial, sans-serif;
+    /* Cambiado a Bebas Neue */
+    background-color: #110808;
+    color: #333;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: #d1cece;
+    border-bottom: 2px solid #bbb;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 80px;
+    height: 80px;
+    margin-right: 15px;
+}
+
+.navegacion {
+    list-style-type: none;
+    display: flex;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+    font-size: 19px;
+}
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+    gap: 30px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    transition: color 1s;
+}
+
+nav ul li a:hover {
+    color: #6D0E00;
+    transform: scale(1.1);
+    transition: transform 0.3 ease;
+}
+
+.container {
+    display: flex;
+    gap: 30px;
+    padding: 20px;
+    margin-bottom: 9%;
+    margin-top: 5%;
+}
+
+#titulo {
+    position: relative;
+    font-size: 40px;
+    color: rgb(255, 255, 255);
+    margin-bottom: 10px;
+}
+
+.administra, .registra {
+    position: relative; /* Necesario para el pseudo-elemento */
+    width: 70%;
+    padding: 80px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: white; /* Texto en color blanco */
+    text-align: left;
+    overflow: hidden; /* Garantiza que el pseudo-elemento no sobresalga */
+}
+
+/* Fondo con opacidad usando ::before */
+.administra::before, .registra::before {
+    content: ""; /* Requerido para pseudo-elementos */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 0.5; /* Controla la opacidad de la imagen */
+    z-index: -1; /* Coloca la imagen detrás del contenido */
+    border-radius: 10px; /* Igual que el contenedor */
+}
+
+/* Configura imágenes específicas */
+.administra::before {
+    background-image: url('/images/carlito.jpg');
+}
+
+.registra::before {
+    background-image: url('/images/basico4.jpg');
+}
+
+h1 {
+    font-size: 1.4em;
+}
+
+p {
+    font-size: 24px;
+    color: #ffffff; /* Color del texto */
+    margin-bottom: 20px;
+}
+
+button {
+    background-color: #a7a5a5da;
+    color: #000000;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #000000;
+    color: #a7a5a5da;
+}
+
+
+.pie-de-pagina {
+    background-color: #333;
+    color: white;
+    padding: 20px 0;
+    width: 100%;
+}
+
+.contenedor {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.pie-de-pagina p {
+    margin: 0;
+    font-size: 20px;
+}
+
+.sociales-contenedor {
+    text-align: right;
+    /* Alinear todo a la derecha */
+}
+
+.titulo-redes {
+    margin-bottom: 10px;
+    font-size: 30px;
+    font-weight: bold;
+
+}
+
+.redes-sociales {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.redes-sociales li {
+    margin-left: 15px;
+}
+
+.redes-sociales a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.redes-sociales a:hover {
+    text-decoration: underline;
+}

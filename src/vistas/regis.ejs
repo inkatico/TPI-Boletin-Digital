@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <link rel="icon" type="image/png" href="/images/icon-36x36.png">
+    <link rel="stylesheet" href="/CSS/regis-style.css">
+</head>
+
+<body>
+    <%- include ('partials/header') %>
+        <div class="form-container">
+            <div id="titulo">
+                <h1>¡Regístralos!</h1>
+            </div>
+            <form action="/validar" method="POST">
+                <div class="dni">
+                    <label for="dni">DNI*</label>
+                    <input type="text" id="dni" name="dni" required>
+                </div>
+                <div class="Nombre">
+                    <label for="nombre">NOMBRE*</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                </div>
+                <div class="Curso">
+                    <label for="curso">CURSO*</label>
+                    <select name="curso" id="curso">
+                        <option value="25">7mo 1ra</option>
+                        <option value="26">7mo 2ra</option>
+                        <option value="27">7mo 3ra</option>
+                    </select>
+                </div>
+                <div class="apellido">
+                    <label for="apellido">APELLIDO*</label>
+                    <input type="text" id="apellido" name="apellido" required>
+                </div>
+                <div class="email">
+                    <label for="email" class="full-width">EMAIL*</label>
+                    <input type="email" id="email" name="email" class="full-width" required>
+                </div>
+                <button type="submit">Registrado</button>
+            </form>
+        </div>
+        <%- include ('partials/footer') %>
+
+</body>
+
+</html>

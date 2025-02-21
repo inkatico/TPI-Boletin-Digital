@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+    font-family: 'Bebas Neue', Arial, sans-serif; /* Cambiado a Bebas Neue */
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px; /* Aumentada la padding */
+    background-color: #d1cece; /* Cambiado el color de fondo */
+    border-bottom: 2px solid #bbb; /* Cambiada la grosor del borde */
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 80px; /* Aumentada el tamaño de la imagen */
+    height: 80px; /* Aumentada el tamaño de la imagen */
+    margin-right: 15px; /* Aumentado el margen a la derecha */
+}
+
+.titulo {
+    font-size: 1.4em;
+}
+
+.navegacion {
+    list-style-type: none;
+    display: flex;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+    font-size: 19px;
+}
+nav ul {
+    list-style-type: none;
+    display: flex;
+    gap: 30px; /* Aumentado el espacio entre los elementos del menú */
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    transition: color 1s; /* Agregado efecto de transición */
+}
+
+nav ul li a:hover {
+    color: #6D0E00; /* Cambiado el color al pasar el mouse */
+    transform: scale(1.1);
+    transition: transform 0.3 ease;
+}
+table {
+    border-collapse: collapse;
+    width: 60%; /* Mantener el ancho de la tabla */
+    margin: 20px auto;
+}
+
+th, td {
+    border: 0.5px solid black;
+    padding: 9.1px; /* Aumentar el padding para celdas más grandes */
+    text-align: center;
+    font-size: 16px; /* Aumentar tamaño de fuente para mejorar la legibilidad */
+    color: aliceblue;
+}
+
+th {
+    background-color: #3d0e0e;
+}
+
+.header-row {
+    background-color: #0f0202;
+}
+
+td {
+    background-color: #a52424;
+}
+
+
+.pie-de-pagina {
+    background-color: #333;
+    color: white;
+    padding: 20px 0;
+    width: 100%;
+}
+
+.contenedor {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.pie-de-pagina p {
+    margin: 0;
+    font-size: 20px;
+}
+
+.sociales-contenedor {
+    text-align: right; /* Alinear todo a la derecha */
+}
+
+.titulo-redes {
+    margin-bottom: 10px;
+    font-size: 30px;
+    font-weight: bold;
+    
+}
+
+.redes-sociales {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.redes-sociales li {
+    margin-left: 15px;
+}
+
+.redes-sociales a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.redes-sociales a:hover {
+    text-decoration: underline;
+}
