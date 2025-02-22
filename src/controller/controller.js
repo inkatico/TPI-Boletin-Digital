@@ -1,12 +1,18 @@
 const mainController = {};
+mainController.setLocals = (req, res, next) => {
+  res.locals.usuario = req.session.usuario || null;
+  next();
+};
 const mysql = require("mysql");
 const bcrypt = require("bcrypt"); // Usaremos bcrypt para cifrar/verificar contraseñas
+const { log } = require("console");
 let conexion = mysql.createConnection({
   host: "127.0.0.1",
   database: "boletin",
   user: "root",
   password: null
 })
+
 mainController.index = async (req, res) => {
   return res.render("index.ejs");
 };
@@ -26,7 +32,17 @@ mainController.carga = async (req, res) => {
   return res.render("carga.ejs");
 };
 mainController.vista = async (req, res) => {
-  return res.render("vista.ejs");
+  let buscarMaterias = `SELECT m.nombre_materia FROM curso_materia cm JOIN materia m ON cm.materia_id = m.materia_id WHERE cm.curso_id = ${req.session.usuario.curso_id}`;
+
+  conexion.query(buscarMaterias, (error, results) => {
+    if (error) {
+      console.error("Error en la consulta:", error);
+      return res.status(500).send("Error en el servidor");
+    }
+    console.log("Materias encontradas:", results); // Verifica los datos en consola
+
+    return res.render("vista.ejs", { materias: results });
+  });
 };
 mainController.regis = async (req, res) => {
   return res.render("regis.ejs");
@@ -37,7 +53,6 @@ mainController.admin = async (req, res) => {
 
 mainController.processLogin = async (req, res) => { 
   const { usuario, contrasena } = req.body;
-  console.log(req.body);
 
   // Consulta para buscar el usuario en la base de datos
   let buscarUsuario = `SELECT * FROM persona WHERE correo = '${usuario}'`;
@@ -68,7 +83,8 @@ mainController.processLogin = async (req, res) => {
       nombre: usuarioData.nombre,
       apellido: usuarioData.apellido,
       correo: usuarioData.correo,
-      tipo_usuario: usuarioData.tipo_usuario_id
+      tipo_usuario: usuarioData.tipo_usuario_id,
+      curso_id: usuarioData.curso_id,
     };
     // Redirige según el tipo de usuario
     switch (usuarioData.tipo_usuario_id) {

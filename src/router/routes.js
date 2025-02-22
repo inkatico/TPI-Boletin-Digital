@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const mainController = require('../controller/controller');
-
+router.use(mainController.setLocals);
 // Definir las rutas
 router.get('/index', mainController.index);// Página principal
 router.get('/login', mainController.login);// Página login

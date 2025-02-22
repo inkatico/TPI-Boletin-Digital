@@ -15,7 +15,6 @@ app.use(
   })
 );
 
-
 const port = process.env.port || 2025;
 app.use((req, res, next) => {
   res.locals.usuario = req.session.usuario || null; // Si no hay usuario logueado, será `null`
@@ -39,3 +38,4 @@ app.use(express.json());
 app.listen(port, () => console.log("Corriendo servidor en: http://localhost:2025/index"));
 // rutas para el inicio de la aplicación
 app.use("/", require("./router/routes"));   
+
