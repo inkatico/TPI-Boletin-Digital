@@ -37,24 +37,36 @@
                 <th>Dic</th>
                 <th>Feb</th>
             </tr>
-
+            <%console.log("maggie", notas)%>
             <!-- Fila de cada materia -->
             <% materias.forEach(materia => { %>
                 <tr>
-                    <!-- Aquí accedes al nombre de la materia usando materia.nombre_materia -->
                     <td><%= materia.nombre_materia %></td>
-                    <td class="empty"></td>
-                    <td class="empty"></td>
-                    <td class="empty"></td>
-                    <td class="empty"></td>
-                    <td class="empty"></td>
-                    <td class="empty"></td>
-                    <td class="empty"></td>
-                    <td class="empty"></td>
-                    <td class="empty"></td>
-                    <td class="empty"></td>
+                    <% 
+                        let nota1NP1 = notas.find(n => n.materia_id === materia.materia_id && n.cuatrimestre === 1 && n.informe === '1NP');
+                        let nota2NP1 = notas.find(n => n.materia_id === materia.materia_id && n.cuatrimestre === 1 && n.informe === '2NP');
+                        let notaFinal1 = notas.find(n => n.materia_id === materia.materia_id && n.cuatrimestre === 1 && n.informe === 'Final');
+                        let nota1NP2 = notas.find(n => n.materia_id === materia.materia_id && n.cuatrimestre === 2 && n.informe === '1NP');
+                        let nota2NP2 = notas.find(n => n.materia_id === materia.materia_id && n.cuatrimestre === 2 && n.informe === '2NP');
+                        let notaFinal2 = notas.find(n => n.materia_id === materia.materia_id && n.cuatrimestre === 2 && n.informe === 'Final');
+                        let notaAnual = notas.find(n => n.materia_id === materia.materia_id && n.informe === 'Anual');
+                        let notaRecDic = notas.find(n => n.materia_id === materia.materia_id && n.informe === 'Dic');
+                        let notaRecFeb = notas.find(n => n.materia_id === materia.materia_id && n.informe === 'Feb');
+                        let notaFinal = notas.find(n => n.materia_id === materia.materia_id && n.informe === 'NotaFinal');
+                    %>
+                    <td><%= nota1NP1 ? nota1NP1.nota : '' %></td>
+                    <td><%= nota2NP1 ? nota2NP1.nota : '' %></td>
+                    <td><%= notaFinal1 ? notaFinal1.nota : '' %></td>
+                    <td><%= nota1NP2 ? nota1NP2.nota : '' %></td>
+                    <td><%= nota2NP2 ? nota2NP2.nota : '' %></td>
+                    <td><%= notaFinal2 ? notaFinal2.nota : '' %></td>
+                    <td><%= notaAnual ? notaAnual.nota : '' %></td>
+                    <td><%= notaRecDic ? notaRecDic.nota : '' %></td>
+                    <td><%= notaRecFeb ? notaRecFeb.nota : '' %></td>
+                    <td><%= notaFinal ? notaFinal.nota : '' %></td>
                 </tr>
             <% }) %>
+            
         </table>
     </div>
 

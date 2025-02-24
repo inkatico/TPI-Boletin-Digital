@@ -32,18 +32,42 @@ mainController.carga = async (req, res) => {
   return res.render("carga.ejs");
 };
 mainController.vista = async (req, res) => {
-  let buscarMaterias = `SELECT m.nombre_materia FROM curso_materia cm JOIN materia m ON cm.materia_id = m.materia_id WHERE cm.curso_id = ${req.session.usuario.curso_id}`;
+  console.log(req.session.usuario);
+  
+  let buscarMaterias = `
+    SELECT m.materia_id, m.nombre_materia 
+    FROM curso_materia cm 
+    JOIN materia m ON cm.materia_id = m.materia_id 
+    WHERE cm.curso_id = ${req.session.usuario.curso_id}`;
 
-  conexion.query(buscarMaterias, (error, results) => {
+  let mostrarNota = `
+    SELECT materia_id, nota, cuatrimestre, informe
+    FROM nota 
+    WHERE persona_id = ${req.session.usuario.id}`;
+  
+
+  conexion.query(buscarMaterias, (error, materias) => {
     if (error) {
-      console.error("Error en la consulta:", error);
+      console.error("Error en la consulta de materias:", error);
       return res.status(500).send("Error en el servidor");
     }
-    console.log("Materias encontradas:", results); // Verifica los datos en consola
 
-    return res.render("vista.ejs", { materias: results });
+    conexion.query(mostrarNota, (error, notas) => {
+      if (error) {
+        console.error("Error en la consulta de notas:", error);
+        return res.status(500).send("Error en el servidor");
+      }
+
+      console.log("Materias encontradas:", materias);
+      console.log("Notas encontradas:", notas);
+
+      return res.render("vista.ejs", { materias, notas });
+    });
   });
 };
+
+
+
 mainController.regis = async (req, res) => {
   return res.render("regis.ejs");
 };
@@ -99,7 +123,6 @@ mainController.processLogin = async (req, res) => {
     }
   });
 };
-
 
 
 mainController.funcionregis = async (req, res) => {
