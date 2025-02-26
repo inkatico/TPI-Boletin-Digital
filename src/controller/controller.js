@@ -41,10 +41,19 @@ mainController.vista = async (req, res) => {
     WHERE cm.curso_id = ${req.session.usuario.curso_id}`;
 
   let mostrarNota = `
-    SELECT materia_id, nota, cuatrimestre, informe
+    SELECT materia_id, nota, cuatrimestre, 
+      CASE 
+        WHEN informe = 1 THEN '1 NP'
+        WHEN informe = 2 THEN '2 NP'
+        WHEN informe = 3 THEN 'Final'
+        WHEN informe = 4 THEN 'Anual'
+        WHEN informe = 5 THEN 'Recuperatorio Dic'
+        WHEN informe = 6 THEN 'Recuperatorio Feb'
+        WHEN informe = 7 THEN 'Nota Final'
+      END AS informe
     FROM nota 
-    WHERE persona_id = ${req.session.usuario.id}`;
-  
+    WHERE persona_id = ${req.session.usuario.id} 
+    AND curso_id = ${req.session.usuario.curso_id}`;
 
   conexion.query(buscarMaterias, (error, materias) => {
     if (error) {
@@ -57,7 +66,6 @@ mainController.vista = async (req, res) => {
         console.error("Error en la consulta de notas:", error);
         return res.status(500).send("Error en el servidor");
       }
-
       console.log("Materias encontradas:", materias);
       console.log("Notas encontradas:", notas);
 

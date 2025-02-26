@@ -11,66 +11,105 @@
 
 <body>
     <%- include('partials/header') %>
+        </div>
+        <div class="notas">
 
-    <div class="notas">
-        <table>
-            <!-- Encabezado de la tabla -->
-            <tr class="header-row">
-                <th rowspan="3">Preceptor/a: <%- usuario.nombre %></th>
-            </tr>
-
-            <tr class="header-row">
-                <th colspan="3">1er cuatrimestre</th>
-                <th colspan="3">2do cuatrimestre</th>
-                <th rowspan="2">Anual</th>
-                <th colspan="2">Recuperatorio</th>
-                <th rowspan="2">Nota Final</th>
-            </tr>
-
-            <tr class="header-row">
-                <th>1 NP</th>
-                <th>2 NP</th>
-                <th>Nota</th>
-                <th>1 NP</th>
-                <th>2 NP</th>
-                <th>Nota</th>
-                <th>Dic</th>
-                <th>Feb</th>
-            </tr>
-            <%console.log("maggie", notas)%>
-            <!-- Fila de cada materia -->
-            <% materias.forEach(materia => { %>
-                <tr>
-                    <td><%= materia.nombre_materia %></td>
-                    <% 
-                        let nota1NP1 = notas.find(n => n.materia_id === materia.materia_id && n.cuatrimestre === 1 && n.informe === '1NP');
-                        let nota2NP1 = notas.find(n => n.materia_id === materia.materia_id && n.cuatrimestre === 1 && n.informe === '2NP');
-                        let notaFinal1 = notas.find(n => n.materia_id === materia.materia_id && n.cuatrimestre === 1 && n.informe === 'Final');
-                        let nota1NP2 = notas.find(n => n.materia_id === materia.materia_id && n.cuatrimestre === 2 && n.informe === '1NP');
-                        let nota2NP2 = notas.find(n => n.materia_id === materia.materia_id && n.cuatrimestre === 2 && n.informe === '2NP');
-                        let notaFinal2 = notas.find(n => n.materia_id === materia.materia_id && n.cuatrimestre === 2 && n.informe === 'Final');
-                        let notaAnual = notas.find(n => n.materia_id === materia.materia_id && n.informe === 'Anual');
-                        let notaRecDic = notas.find(n => n.materia_id === materia.materia_id && n.informe === 'Dic');
-                        let notaRecFeb = notas.find(n => n.materia_id === materia.materia_id && n.informe === 'Feb');
-                        let notaFinal = notas.find(n => n.materia_id === materia.materia_id && n.informe === 'NotaFinal');
-                    %>
-                    <td><%= nota1NP1 ? nota1NP1.nota : '' %></td>
-                    <td><%= nota2NP1 ? nota2NP1.nota : '' %></td>
-                    <td><%= notaFinal1 ? notaFinal1.nota : '' %></td>
-                    <td><%= nota1NP2 ? nota1NP2.nota : '' %></td>
-                    <td><%= nota2NP2 ? nota2NP2.nota : '' %></td>
-                    <td><%= notaFinal2 ? notaFinal2.nota : '' %></td>
-                    <td><%= notaAnual ? notaAnual.nota : '' %></td>
-                    <td><%= notaRecDic ? notaRecDic.nota : '' %></td>
-                    <td><%= notaRecFeb ? notaRecFeb.nota : '' %></td>
-                    <td><%= notaFinal ? notaFinal.nota : '' %></td>
+            <table>
+                <!-- Encabezado de la tabla -->
+                <tr class="bienvenido">
+                    <th class="bienvenido" rowspan="3">¡Boletin digital de <%- usuario.nombre %>!</th>
                 </tr>
-            <% }) %>
-            
-        </table>
-    </div>
 
-    <%- include('partials/footer') %>
+                <tr class="header-row">
+                    <th colspan="3">1er cuatrimestre</th>
+                    <th colspan="3">2do cuatrimestre</th>
+                    <th class="finales" rowspan="2">Anual</th>
+                    <th colspan="2">Recuperatorio</th>
+                    <th class="finales" rowspan="2">Nota Final</th>
+                </tr>
+
+                <tr class="header-row">
+                    <th>1 NP</th>
+                    <th>2 NP</th>
+                    <th class="resaltar">1 NC</th>
+                    <th>1 NP</th>
+                    <th>2 NP</th>
+                    <th class="resaltar">2 NC</th>
+                    <th>Dic</th>
+                    <th>Feb</th>
+                </tr>
+                <%console.log("maggie", notas)%>
+                    <!-- Fila de cada materia -->
+                    <% materias.forEach(materia=> { %>
+                        <tr>
+                            <td>
+                                <%= materia.nombre_materia %>
+                            </td>
+                            <% let notasMateria=notas.filter(nota=> nota.materia_id === materia.materia_id);
+                                let nota1Cuat1NP = notasMateria.find(n => n.cuatrimestre === 1 && n.informe ===
+                                '1 NP');
+                                let nota1Cuat2NP = notasMateria.find(n => n.cuatrimestre === 1 && n.informe ===
+                                '2 NP');
+                                let nota1CuatFinal = notasMateria.find(n => n.cuatrimestre === 1 && n.informe
+                                === 'Final');
+
+                                let nota2Cuat1NP = notasMateria.find(n => n.cuatrimestre === 2 && n.informe ===
+                                '1 NP');
+                                let nota2Cuat2NP = notasMateria.find(n => n.cuatrimestre === 2 && n.informe ===
+                                '2 NP');
+                                let nota2CuatFinal = notasMateria.find(n => n.cuatrimestre === 2 && n.informe
+                                === 'Final');
+
+                                let notaAnual = notasMateria.find(n => 4 && n.informe === 'Anual');
+                                let notaRecuperatorioDic = notasMateria.find(n => 5 && n.informe ===
+                                'Recuperatorio Dic');
+                                let notaRecuperatorioFeb = notasMateria.find(n => 6 && n.informe ===
+                                'Recuperatorio Feb');
+                                let notaFinal = notasMateria.find(n => n.informe === 'Nota Final');
+                                %>
+                                <td>
+                                    <%= nota1Cuat1NP ? nota1Cuat1NP.nota : '-' %>
+                                </td>
+                                <td>
+                                    <%= nota1Cuat2NP ? nota1Cuat2NP.nota : '-' %>
+                                </td>
+                                <td class="resaltar">
+                                    <%= nota1CuatFinal ? nota1CuatFinal.nota : '-' %>
+                                </td>
+
+                                <td>
+                                    <%= nota2Cuat1NP ? nota2Cuat1NP.nota : '-' %>
+                                </td>
+                                <td>
+                                    <%= nota2Cuat2NP ? nota2Cuat2NP.nota : '-' %>
+                                </td>
+                                <td class="resaltar">
+                                    <%= nota2CuatFinal ? nota2CuatFinal.nota : '-' %>
+                                </td>
+
+                                <td class="finales">
+                                    <%= notaAnual ? notaAnual.nota : '-' %>
+                                </td>
+
+                                <td>
+                                    <%= notaRecuperatorioDic ? notaRecuperatorioDic.nota : '-' %>
+                                </td>
+                                <td>
+                                    <%= notaRecuperatorioFeb ? notaRecuperatorioFeb.nota : '-' %>
+                                </td>
+
+                                <td class="finales">
+                                    <%= notaFinal ? notaFinal.nota : '-' %>
+                                </td>
+
+                        </tr>
+                        <% }); %>
+
+
+            </table>
+        </div>
+
+        <%- include('partials/footer') %>
 
 </body>
 
