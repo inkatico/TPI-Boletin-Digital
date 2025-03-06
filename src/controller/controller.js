@@ -218,6 +218,41 @@ mainController.vista = async (req, res) => {
 mainController.regis = async (req, res) => {
   return res.render("regis.ejs");
 };
+mainController.gestion = async (req, res) => {
+  const datos = req.body;
+  let dni = datos.dni;
+  let nombre = datos.nombre;
+  let curso = datos.curso;
+  let apellido = datos.apellido;
+  let email = datos.email;
+  let tipo_usuario_id = "1";
+
+  let buscar = `SELECT * FROM persona WHERE persona_id = ${dni}`;
+  conexion.query(buscar, function (error, row) {
+    if (error) {
+      throw error;
+    } else {
+      if (row.length > 0) {
+        res.redirect("/regis?alerta=Usuario ya existente.");
+      } else {
+        let registrar = `
+          INSERT INTO persona (persona_id, nombre, apellido, correo, contrasena, tipo_usuario_id, curso_id)
+          VALUES ('${dni}', '${nombre}', '${apellido}', '${email}', '${contrasena}', '${tipo_usuario_id}', '${curso}')
+        `;
+        conexion.query(registrar, function (error) {
+          if (error) {
+            throw error;
+          } else {
+            console.log("Datos almacenados correctamente");
+            res.redirect("/regis");
+          }
+        });
+      }
+    }
+  });
+  return res.render("gestion.ejs");
+};
+
 mainController.admin = async (req, res) => {
   return res.render("admin.ejs");
 };

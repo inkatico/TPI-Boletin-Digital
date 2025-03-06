@@ -10,6 +10,7 @@ router.get('/alumno', mainController.alumno);// Página alumno
 router.get('/vista', mainController.vista);// Página vista
 router.get('/carga', mainController.carga);// Página carga
 router.get('/regis', mainController.regis);// Página registro
+router.get('/gestion', mainController.gestion);
 router.get('/admin', mainController.admin);// Página admin
 router.get('/info', mainController.info);// Página admin
 router.post('/validar', mainController.funcionregis);// func regis
