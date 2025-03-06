@@ -71,39 +71,63 @@ nav ul li a:hover {
 }
 .content-box {
     background-color: rgba(255, 255, 255, 0.9);
-    padding: 30px;
+    padding: 17px;
     text-align: center;
     font-size: 2rem;
-    width: 600px;
-    height: 170px;
+    width: 560px;
+    height: 150px;
     border-radius: 8px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Sombra */
     margin-top: 310px;
 }
 
-#carga:link{text-decoration: none;
-    color:#d1cece
+#cursoForm {
+    display: flex;
+    background: rgba(181, 181, 182, 0.835); /* Fondo semitransparente */
+    padding: 5px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 220px;
+    text-align: center;
+    align-items: center;
+    backdrop-filter: blur(10px); /* Efecto de difuminado */
+    margin-left: 29%;
 }
-
-#carga:visited{
-    color:#d1cece
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: white;
+    
 }
-
+select {
+    width: 130px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: rgba(255, 255, 255, 0.922);
+}
+select:focus {
+    outline: none;
+    border-color: #706a6a;
+}
 button {
-    background-color: #1f1e1e;
+    background-color: #423f3f;
     color: aliceblue;
     border-radius: 3px;
-    width: 200px;
+    width: 150px;
     height: 40px;
     font-weight: bold;
     border: none;
-    margin-top: 10px;
+    margin-left: 10px;
+    transition: 0.3s;
 
 }
 button:hover {
-    background-color: #9b9696;
-    transform: scale(1.1);
-    cursor: pointer;
+    background-color: #4a4a4a9f;
+    transform:scale(1.0);
+    cursor:pointer;
 }
 .pie-de-pagina {
     background-color: #333;

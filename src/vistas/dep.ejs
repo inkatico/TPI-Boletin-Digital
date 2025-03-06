@@ -13,11 +13,30 @@
         <section class="inicio">
             <div class="content-box">
                 <h1>¡Es hora de cargar las notas!</h1>
-                <button><a href="/carga" id="carga">Cargar notas</a></button>
+                
+                <form id="cursoForm">
+                    <label for="cursoId"></label>
+                    <select name="cursoId" id="cursoId">
+                        <option value="" disabled selected>Seleccionar</option>
+                        <% cursos.forEach(curso => { %>
+                            <option value="<%= curso.curso_id %>"><%= curso.nombre_curso %></option>
+                        <% }) %>
+                    </select>
+                    <button type="submit">Ir al curso</button>
+                </form>
             </div>
         </section>
     </main>
     <%- include ('partials/footer') %>
 
+    <script>
+        document.getElementById("cursoForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Evita el envío tradicional del formulario
+            const cursoId = document.getElementById("cursoId").value;
+            if (cursoId) {
+                window.location.href = "/carga/" + cursoId + "/" + 1; // Redirige a la URL correspondiente
+            }
+        });
+    </script>
 </body>
 </html>

@@ -14,4 +14,7 @@ router.get('/admin', mainController.admin);// Página admin
 router.get('/info', mainController.info);// Página admin
 router.post('/validar', mainController.funcionregis);// func regis
 router.post("/login", mainController.processLogin);
+router.get('/carga/:id/:dni', mainController.carga);
+router.post("/cargaNotas", mainController.cargaNotas);
+
 module.exports = router;

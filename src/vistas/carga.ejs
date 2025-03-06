@@ -8,193 +8,182 @@
     <link rel="icon" type="image/png" href="/images/icon-36x36.png">
     <link rel="stylesheet" href="/CSS/carga-stye.css">
 </head>
+<script>
+    document.getElementById("cursoForm").addEventListener("submit", function (event) {
+        event.preventDefault(); // Evita el envío tradicional del formulario
+
+        // Obtener el cursoId desde la URL actual (en la parte de la ruta)
+        const cursoId = window.location.pathname.split('/')[2]; // Obtener el cursoId desde la URL
+        // Obtener el persona_id del alumno seleccionado en el formulario
+        const personaId = document.getElementById("personaId").value;
+
+        if (cursoId && personaId) {
+            // Redirigir a la URL correspondiente con cursoId y personaId
+            window.location.href = "/carga/" + cursoId + "/" + personaId;
+        }
+    });
+</script>
 
 <body>
-    <%- include ('partials/header') %>
-        <input type="text" id="dniBuscar" placeholder="Ingrese DNI del alumno">
-        <button onclick="buscarNotas()">Buscar</button>
-        <table id="tablaNotas">
-            <!-- Aquí se cargarán las notas -->
-            <tr class="header-row">
-                <th rowspan="3">Preceptor: Ana Laura</th>
-                </th>
-            </tr>
+    <%- include('partials/header') %>
 
-            <tr class="header-row">
-                <th colspan="3">1er cuatrimestre</th>
-                <th colspan="3">2do cuatrimestre</th>
-                <th rowspan="2">Anual</th>
-                <th colspan="2">Recuperatorio</th>
-                <th rowspan="2">Nota Final</th>
-            </tr>
-            <tr class="header-row">
-                <th>1 NP</th>
-                <th>2 NP</th>
-                <th>Nota</th>
-                <th>1 NP</th>
-                <th>2 NP</th>
-                <th>Nota</th>
-                <th>Dic</th>
-                <th>Feb</th>
-            </tr>
+        <form id="cursoForm">
+            <label for="personaId"></label>
 
-            <!-- Fila de cada alumno -->
-            <tr>
-                <td>Matemática</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+            <select name="personaId" id="personaId">
+                <!-- Esta opción será la predeterminada si no hay ningún alumno seleccionado -->
+                <option value="" disabled selected>Seleccionar alumno</option>
 
-            <tr>
-                <td>Programación</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+                <% usuarios.forEach(usuario=> { %>
+                    <option value="<%= usuario.persona_id %>" <%=usuario.persona_id==dni ? 'selected' : '' %>>
+                        <%= usuario.nombre %>
+                            <%= usuario.apellido %>
+                    </option>
+                    <% }) %>
+            </select>
 
-            <tr>
-                <td>Marco Jurídico</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+            <button type="submit">Listo</button>
+        </form>
 
-            <tr>
-                <td>Inglés Técnico</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+        <form method="post" action="/cargaNotas" id="notasForm">
+            <input type="hidden" name="persona_id" value="<%= usuario.persona_id %>">
+            <input type="hidden" name="curso_id" value="<%= usuario.curso_id %>">
+            <table>
+                <tr class="bienvenido">
+                    <th class="bienvenido" rowspan="3">¡Boletin digital de <%- usuario.nombre %>!</th>
+                </tr>
+                <tr class="header-row">
+                    <th colspan="3">1er cuatrimestre</th>
+                    <th colspan="3">2do cuatrimestre</th>
+                    <th class="finales" rowspan="2">Anual</th>
+                    <th colspan="2">Recuperatorio</th>
+                    <th class="finales" rowspan="2">Nota Final</th>
+                </tr>
+                <tr class="header-row">
+                    <th>1 NP</th>
+                    <th>2 NP</th>
+                    <th class="resaltar">1 NC</th>
+                    <th>1 NP</th>
+                    <th>2 NP</th>
+                    <th class="resaltar">2 NC</th>
+                    <th>Dic</th>
+                    <th>Feb</th>
+                </tr>
 
-            <tr>
-                <td>Hardware</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+                <% materias.forEach(materia=> { %>
+                    <tr>
+                        <td>
+                            <%= materia.nombre_materia %>
+                        </td>
+                        <% let notasMateria=notas.filter(nota=> nota.materia_id === materia.materia_id);
+                            let nota1Cuat1NP = notasMateria.find(n => n.cuatrimestre === 1 && n.informe === 1);
+                            let nota1Cuat2NP = notasMateria.find(n => n.cuatrimestre === 1 && n.informe === 2);
+                            let nota1CuatFinal = notasMateria.find(n => n.cuatrimestre === 1 && n.informe === 3);
+                            let nota2Cuat1NP = notasMateria.find(n => n.cuatrimestre === 2 && n.informe === 1);
+                            let nota2Cuat2NP = notasMateria.find(n => n.cuatrimestre === 2 && n.informe === 2);
+                            let nota2CuatFinal = notasMateria.find(n => n.cuatrimestre === 2 && n.informe === 3);
+                            let notaAnual = notasMateria.find(n => n.cuatrimestre === 0 && n.informe === 4);
+                            let notaRecuperatorioDic = notasMateria.find(n => n.cuatrimestre === 0 && n.informe === 5);
+                            let notaRecuperatorioFeb = notasMateria.find(n => n.cuatrimestre === 0 && n.informe === 6);
+                            let notaFinal = notasMateria.find(n => n.cuatrimestre === 0 && n.informe === 7);
+                            %>
 
-            <tr>
-                <td>Prácticas Profesionalizantes</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+                            <!-- Campos input para cargar notas -->
+                            <td>
+                                <input type="number" name="nota1Cuat1NP_<%= materia.materia_id %>"
+                                    value="<%= nota1Cuat1NP ? nota1Cuat1NP.nota : '' %>" step="0.1" min="1" max="10">
+                            </td>
+                            <td>
+                                <input type="number" name="nota1Cuat2NP_<%= materia.materia_id %>"
+                                    value="<%= nota1Cuat2NP ? nota1Cuat2NP.nota : '' %>" step="0.1" min="1" max="10">
+                            </td>
+                            <td class="resaltar">
+                                <input type="number" name="nota1CuatFinal_<%= materia.materia_id %>"
+                                    value="<%= nota1CuatFinal ? nota1CuatFinal.nota : '' %>" step="0.1" min="1"
+                                    max="10">
+                            </td>
 
-            <tr>
-                <td>Taller Vocacional</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+                            <td>
+                                <input type="number" name="nota2Cuat1NP_<%= materia.materia_id %>"
+                                    value="<%= nota2Cuat1NP ? nota2Cuat1NP.nota : '' %>" step="0.1" min="1" max="10">
+                            </td>
+                            <td>
+                                <input type="number" name="nota2Cuat2NP_<%= materia.materia_id %>"
+                                    value="<%= nota2Cuat2NP ? nota2Cuat2NP.nota : '' %>" step="0.1" min="1" max="10">
+                            </td>
+                            <td class="resaltar">
+                                <input type="number" name="nota2CuatFinal_<%= materia.materia_id %>"
+                                    value="<%= nota2CuatFinal ? nota2CuatFinal.nota : '' %>" step="0.1" min="1"
+                                    max="10">
+                            </td>
 
-            <tr>
-                <td>Arduino 3</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+                            <td class="finales">
+                                <input type="number" name="notaAnual_<%= materia.materia_id %>"
+                                    value="<%= notaAnual ? notaAnual.nota : '' %>" step="0.1" min="1" max="10">
+                            </td>
 
-            <tr>
-                <td>Redes 3</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+                            <td>
+                                <input type="number" name="notaRecuperatorioDic_<%= materia.materia_id %>"
+                                    value="<%= notaRecuperatorioDic ? notaRecuperatorioDic.nota : '' %>" step="0.1"
+                                    min="1" max="10">
+                            </td>
+                            <td>
+                                <input type="number" name="notaRecuperatorioFeb_<%= materia.materia_id %>"
+                                    value="<%= notaRecuperatorioFeb ? notaRecuperatorioFeb.nota : '' %>" step="0.1"
+                                    min="1" max="10">
+                            </td>
 
-            <tr>
-                <td>Autogestión </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+                            <td class="finales">
+                                <input type="number" name="notaFinal_<%= materia.materia_id %>"
+                                    value="<%= notaFinal ? notaFinal.nota : '' %>" step="0.1" min="1" max="10">
+                            </td>
+                    </tr>
+                    <% }); %>
+            </table>
+            <script>
+                function obtenerParametrosURL() {
+                    const url = window.location.href;
+                    const urlObj = new URL(url);
+            
+                    // Obtener persona_id desde los parámetros de la URL (ejemplo: ?personaId=46182614)
+                    const persona_id = urlObj.searchParams.get("personaId");
+            
+                    // Obtener curso_id desde la ruta (ejemplo: /carga/26/1)
+                    const pathParts = urlObj.pathname.split("/").filter(part => part !== ""); // Filtramos valores vacíos
+                    const curso_id = pathParts.length > 2 ? pathParts[1] : null; // Tomamos el segundo valor correcto
+            
+                    return { persona_id, curso_id };
+                }
+            
+                function agregarCamposOcultos() {
+                    const { persona_id, curso_id } = obtenerParametrosURL();
+                    const form = document.getElementById("notasForm");
+            
+                    if (persona_id && curso_id) {
+                        const inputPersona = document.createElement("input");
+                        inputPersona.type = "hidden";
+                        inputPersona.name = "persona_id";
+                        inputPersona.value = persona_id;
+                        form.appendChild(inputPersona);
+            
+                        const inputCurso = document.createElement("input");
+                        inputCurso.type = "hidden";
+                        inputCurso.name = "curso_id";
+                        inputCurso.value = curso_id;
+                        form.appendChild(inputCurso);
+                    } else {
+                        console.error("No se encontraron persona_id o curso_id en la URL.");
+                    }
+                }
+            
+                window.onload = agregarCamposOcultos;
+            </script>
+            
+            
+            <button type="submit" id="guardarBtn">Guardar Notas</button>
+        </form>
 
-            <tr>
-                <td>Asistencia </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-        </table>
-        </div>
-        <%- include ('partials/footer') %>
+        <%- include('partials/footer') %>
 
 </body>
 
